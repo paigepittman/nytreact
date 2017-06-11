@@ -1,5 +1,5 @@
 import React from "react";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 
 class Search extends React.Component {
   constructor(props) {
@@ -10,6 +10,26 @@ class Search extends React.Component {
 
 
   }
+  componentDidUpdate() {
+
+    // Run the query for the address
+    API.runQuery(this.state.searchterm).then(function(data) {
+      if (data !== this.state.results) {
+        console.log("DATA" + data.headline.main);
+        this.setState({ results: data });
+ 
+        // After we've received the result... then post the search term to our history.
+        API.postArticles(this.state.searchterm).then(function() {
+          console.log("Updated!");
+        })
+      }
+    })
+  }
+        // }.bind(this));
+
+
+    // }.bind(this));
+
   handleChange(event) {
     this.setState({ input: event.target.value});
   }
@@ -17,6 +37,7 @@ class Search extends React.Component {
     const searchterm = this.state.input;
     API.runQuery(searchterm).then(this.props.runQuery);
     this.setState({ input: "" });
+    // console.log(data);
   }
   render() {
       return (

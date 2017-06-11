@@ -1,33 +1,32 @@
 import React, { Component } from "react";
-// import Panel from "./children/Panel";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 
 class Saved extends Component {
   constructor() {
     super();
     this.state = {
       articles: [] }
-      this.getArticle = this.getArticle.bind(this);
+      this.getArticles = this.getArticles.bind(this);
 
 
   }
   componentDidMount() {
-    this.getArticle();
+    this.getArticles();
   }
-  getArticle() {
-    API.getArticle().then((res) => {
-      const favoriteArticle = res.data.filter(article => article.favorited);
-      this.setState({ articles: favoriteArticle });
+  getArticles() {
+    API.getArticles().then((res) => {
+      const savedArticle = res.data.filter(article => article.saved);
+      this.setState({ articles: savedArticle });
     });
   }
-  renderArticle() {
+  renderArticles() {
     return this.state.articles.map(article => (
       //<panel>
         // article={article},
         // key={article._id},
         // getArticle={this.getArticle}
         <div>
-          {article}
+          {articles}
         </div>
     ));
   }
@@ -40,7 +39,7 @@ class Saved extends Component {
         </div>
         <div className="container">
         <div className="row">
-          {this.renderArticle()}
+          {this.renderArticles()}
         </div>
         </div>
       </div>

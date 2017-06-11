@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 // import API from "../../utils/API"
 
-class Results extends React.Component {
+class Results extends Component {
 
   saveArticle(article) {
     API.saveArticle(article).then(this.props.getArticles);
