@@ -10,21 +10,21 @@ class Search extends React.Component {
 
 
   }
-  componentDidUpdate() {
-
-    // Run the query for the address
-    API.runQuery(this.state.searchterm).then(function(data) {
-      if (data !== this.state.results) {
-        console.log("DATA" + data.headline.main);
-        this.setState({ results: data });
- 
-        // After we've received the result... then post the search term to our history.
-        API.postArticles(this.state.searchterm).then(function() {
-          console.log("Updated!");
-        })
-      }
-    })
-  }
+  // componentDidUpdate() {
+  //
+  //   // Run the query for the address
+  //   API.runQuery(this.state.searchterm).then(function(data) {
+  //     if (data !== this.state.results) {
+  //       console.log("DATA" + data.headline.main);
+  //       this.setState({ results: data });
+  //
+  //       // After we've received the result... then post the search term to our history.
+  //       API.postArticles(this.state.searchterm).then(function() {
+  //         console.log("Updated!");
+  //       })
+  //     }
+  //   })
+  // }
         // }.bind(this));
 
 
@@ -33,9 +33,23 @@ class Search extends React.Component {
   handleChange(event) {
     this.setState({ input: event.target.value});
   }
+
   handleSubmit() {
     const searchterm = this.state.input;
-    API.runQuery(searchterm).then(this.props.runQuery);
+    console.log(searchterm);
+    API.runQuery(searchterm).then(function(results) {
+      if (results) {
+        console.log(results);
+        // console.log(this);
+        // this.setState({ results: data });
+
+        // After we've received the result... then post the search term to our history.
+        API.postArticles(this.state.searchterm).then(function() {
+          console.log("Updated!");
+        })
+      }else {console.log("NO RESULTS")};
+
+    })
     this.setState({ input: "" });
     // console.log(data);
   }

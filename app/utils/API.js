@@ -1,29 +1,29 @@
 import axios from "axios";
 
 const API = {
-  runQuery: function(searchterm, response) {
-  
+  runQuery: function(searchterm) {
+
     console.log(searchterm);
     var authKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
     var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + authKey + "&q=" + searchterm;
-    var articleCounter = 0;
-
+    var counter = 0;
+    var results = [];
 
         return axios.get(queryURL).then(function(response) {
           if (response.data) {
             var nytimes = response.data.response.docs;
-            for (var i = 0; i < 5; i++) {
+            for(var i = 0; i < nytimes.length; i++){
 
+					if(counter > 4) {
+						return results;
+					}
 
-            console.log(nytimes[i].headline.main);
-            console.log(nytimes[i].snippet);
-            console.log(nytimes[i].pub_date);
-            console.log(nytimes[i].web_url);
-
-            }
-
-          return nytimes;
-        }
+					if(nytimes[counter].headline.main && nytimes[counter].pub_date && nytimes[counter].web_url && nytimes[counter].snippet) {
+						results.push(nytimes[counter]);
+						counter++;
+					}
+				}
+      }
         return "no results found";
       });
 

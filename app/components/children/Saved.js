@@ -21,21 +21,18 @@ class Saved extends Component {
   }
   renderArticles() {
     return this.state.articles.map(article => (
-      //<panel>
-        // article={article},
+        article={article}
         // key={article._id},
         // getArticle={this.getArticle}
-        <div>
-          {articles}
-        </div>
+
     ));
   }
   render() {
     return (
       <div>
         <div className="jumbotron text-center">
-          <h1>Your Favorite Article</h1>
-          <p>Your very best articles.</p>
+          <h3>Saved Articles</h3>
+
         </div>
         <div className="container">
         <div className="row">

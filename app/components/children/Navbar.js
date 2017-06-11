@@ -5,7 +5,7 @@ const Navbar = () => (
   <nav style={{ marginBottom: 0 }} className="navbar navbar-inverse">
     <div className="container-fluid">
       <div className="navbar-header">
-        <h1>NYT Search</h1>
+        <center><h1>NYT Search</h1></center>
       </div>
     </div>
   </nav>
