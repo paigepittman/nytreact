@@ -14,6 +14,7 @@ class Saved extends Component {
     this.getArticles();
   }
   getArticles() {
+    console.log("GET ARTICLES");
     API.getArticles().then((res) => {
       const savedArticle = res.data.filter(article => article.saved);
       this.setState({ articles: savedArticle });
@@ -29,15 +30,12 @@ class Saved extends Component {
   }
   render() {
     return (
-      <div>
-        <div className="jumbotron text-center">
-          <h3>Saved Articles</h3>
-
-        </div>
-        <div className="container">
-        <div className="row">
+      <div className="panel panel-success">
+				<div className="panel-heading">
+					<h3 className="panel-title text-center"><strong>Saved Articles</strong></h3>
+				</div>
+				<div className="panel-body">
           {this.renderArticles()}
-        </div>
         </div>
       </div>
     );

@@ -44,9 +44,9 @@ class Search extends React.Component {
         // this.setState({ results: data });
 
         // After we've received the result... then post the search term to our history.
-        API.postArticles(this.state.searchterm).then(function() {
-          console.log("Updated!");
-        })
+        // API.postArticles(this.state.searchterm).then(function() {
+        //   console.log("Updated!");
+        // })
       }else {console.log("NO RESULTS")};
 
     })

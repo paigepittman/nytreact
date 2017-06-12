@@ -8,11 +8,19 @@ import Footer from "./children/Footer";
 
 const Main  = props => (
   <div className="container">
+    <div className="row">
     <Navbar />
+    </div>
+    <div className="row">
     <Search />
+    </div>
+    <div className="row">
     <Results />
+    </div>
     <Saved />
+    <div className="row">
     <Footer />
+    </div>
   </div>
 
 );

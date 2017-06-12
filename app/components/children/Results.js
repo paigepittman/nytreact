@@ -3,16 +3,22 @@ import React, {Component} from "react";
 
 class Results extends Component {
 
+  constructor(props) {
+    super(props);
+
+
+  }
+
   saveArticle(article) {
     API.saveArticle(article).then(this.props.getArticles);
   }
-  deleteArticle(id) {
-    API.deleteArticle(id).then(this.props.getArticles);
-  }
+  // deleteArticle(id) {
+  //   API.deleteArticle(id).then(this.props.getArticles);
+  // }
 
   render() {
     return (
-      <div className="col-md-6 col-sm-6">
+      <div className="col-md-12 col-sm-6">
         <div className="panel panel-default">
           <div className="panel-body">
             <i
@@ -21,13 +27,14 @@ class Results extends Component {
               // className={this.props.article.saved ? "fa fa-star gold" : "fa fa-star-o"}
               aria-hidden="true"
             />
-            <i
+
+            {/* <i
               onClick={() => this.deleteArticle(this.props.article._id)}
               style={styles.deleteStyle}
               className="fa fa-trash-o"
               aria-hidden="true"
-            />
-            {/* {this.props.article.text} */}
+            /> */}
+            {console.log("PROPS" + this.props.handleSubmit)}
           </div>
         </div>
       </div>
